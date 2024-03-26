@@ -7,7 +7,7 @@ ___
 Quié Isso Livros
 
 **2. Logotipo da solução**
-<img src="logo-quie-isso-att-3.png">
+<img src="logo-quie-isso-att-3.png" style="width: 50%; height: 50%;">
 
 **3. Cenário**
 Pensando em uma solução para a cidade de Rondonópolis, carente de um público leitor por motivos culturais, pensei nesta abordagem alternativa para angariar novos leitores. Utilizando ferramentas como o Google Maps e bom humor, é possível informar aos usuários onde procurar por livros na cidade e até mesmo na internet por indicações informadas no site.
