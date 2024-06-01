@@ -30,7 +30,7 @@ Pensando em uma solução para a cidade de Rondonópolis, carente de um público
 
   
 **5. Tecnologias utilizadas**
-HTML 5, CSS, Bootstrap, Javascript (front-end), MySQL (Banco de Dados) e PHP (back-end).
+HTML 5, CSS, Bootstrap, Javascript (front-end), MySQL (Banco de Dados) e Python (back-end).
 
 **6. Cronograma para desenvolvimento**
 Início do Projeto: Março/2024;
