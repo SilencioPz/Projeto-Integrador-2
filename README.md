@@ -10,7 +10,7 @@ Quié Isso Livros
 <img src="logo-quie-isso-att-3.png" style="width: 50%; height: 50%;">
 
 **3. Cenário**
-Pensando em uma solução para a cidade de Rondonópolis, carente de um público leitor por motivos culturais, pensei nesta abordagem alternativa para angariar novos leitores. Utilizando ferramentas como o Google Maps e bom humor, é possível informar aos usuários onde procurar por livros na cidade e até mesmo na internet por indicações informadas no site.
+Pensando em uma solução para a cidade de Rondonópolis, carente de um público leitor por motivos culturais, pensei em um sebo virtual para angariar novos leitores. Utilizando ferramentas como o Google Maps, loja virtual e bom humor, é possível informar aos usuários onde procurar por livros na cidade, pelo endereço do sebo virtual e até mesmo na internet por indicações informadas no site.
 
 **4. Requisitos a serem atendidos:**
 * Requisitos funcionais:
@@ -21,7 +21,7 @@ Pensando em uma solução para a cidade de Rondonópolis, carente de um público
 •	O site terá um campo Fale Comigo, enviando dicas, sugestões ou relatando bugs e falhas ao dev;
 •	O site pode gerar um PDF informando todos os livros informados por seções;
 •	O site terá integração com redes sociais, como Instagram e WhatsApp, para divulgação;
-•	O site terá um Google Maps, indicando livrarias ou sebos próximos para a aquisição dos livros recomendados.
+•	O site terá um Google Maps, indicando: livrarias, o sebo virtual e outros sebos na cidade próximos para a aquisição dos livros recomendados.
 
 * Requisitos não funcionais:
 •	O site não será atualizado constantemente;
