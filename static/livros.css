@@ -1,0 +1,51 @@
+/* livros.css */
+
+.cart {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    width: 300px;
+    background-color: #34C759; /* green background */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+h1 {
+    color: blue;
+}
+
+h4 {
+    color: green;
+}
+
+p {
+    color: red;
+}
+
+@media (max-width: 768px) {
+    .cart {
+    position: relative;
+    width: 100%;
+    height: auto;
+    }
+}
+
+/* CSS pro botão voltar */
+.back-button {
+    position: absolute;
+    top: 10px;
+    left: 10px; 
+}
+.back-button button {
+    background-color: #34C759; 
+    color: #fff; 
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer; 
+}
+.back-button button:hover {
+    background-color: #007bff; 
+    transition: 0.3s; 
+}

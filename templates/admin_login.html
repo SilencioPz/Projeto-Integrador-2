@@ -1,0 +1,38 @@
+{% extends "template.html" %}
+
+{% block conteudo %}
+<style>
+.login-form {
+    max-width: 300px;
+    margin: 40px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-form input[type="submit"] {
+    display: block;
+    margin: 20px auto;
+}
+</style>
+
+<h1 style="text-align: center;">Login de ADM</h1>
+<div class="login-form">
+<form action="{{ url_for('admin_login') }}" method="post">
+    <!-- Adicione o token CSRF aqui -->
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    {{ form.hidden_tag() }}
+    {{ form.email.label }} {{ form.email() }}
+    <br>
+    {{ form.senha.label }} {{ form.senha() }}
+    <!-- Add a hidden field for the next parameter -->
+    <input type="hidden" name="next" value="{{ proxima or url_for('crud_livros') }}">
+    <input type="submit" value="Login">
+</form>
+</div>
+<br>
+<p>{{ usuario.email }}</p>
+<br>
+<p>{{ usuario.senha }}</p>
+{% endblock %}

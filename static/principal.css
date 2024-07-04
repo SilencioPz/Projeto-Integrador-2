@@ -1,0 +1,318 @@
+hr {
+border: 5px solid black;
+}
+
+header {
+display: flex;
+flex-direction: column;
+justify-content: flex-start;
+align-items: flex-end;
+}
+
+header img {
+pointer-events: none;
+max-width: 200px;
+height: auto;
+margin: auto;
+}
+
+.header {
+display: flex;
+flex-direction: row;
+justify-content: flex-start; 
+align-items: center;
+width: 100%;
+}
+
+.header button {
+background-color: #008000;
+color: white;
+width: 100px;
+height: 50px;
+border: none;
+cursor: pointer;
+font-size: 16px;
+}
+
+.header button:hover {
+background-color: #006400;
+}
+
+/* tema claro */
+.meuBody {
+background-color: #E5E5E5;
+display: flex;
+flex-direction: column;
+}
+
+/* tema escuro */
+/* Botão do tema escuro estilizado */
+#dark-mode-toggle {
+    background-color: #000; 
+    color: #fff; 
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer; 
+}
+
+/* Hover, deixa o botão cinza com mouse/dedo */
+#dark-mode-toggle:hover {
+    background-color: #333; 
+}
+
+.dark-theme {
+    background-color: #000; 
+    color: #fff; 
+}
+
+        h1,
+        h3 {
+            text-align: center;
+        }
+
+        h1,
+        h3,
+        h4 {
+            color: black;
+        }
+
+        h5 {
+            color: blue;
+        }
+
+        h2,
+        h5 a {
+            color: blue;
+        }
+
+        a {
+            color: blue;
+        }
+
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        li {
+            list-style-type: none;
+        }
+
+        li:before {
+            content: "🤓";
+            padding-right: 5px;
+        }
+
+        p {
+            font-size: small;
+            text-align: right;
+            color: black;
+        }
+
+        #tendencias {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f1f1f1;
+            padding: 30px;
+        }
+
+        #tendencias ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 2em;
+        }
+
+        #generos {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            width: 100%;
+        }
+
+        .livros-destaque {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .livro {
+            width: 30%;
+            margin: 0 1%;
+        }
+
+        .livro:not(:last-child) {
+            margin-right: 2%;
+        }
+
+        /*Botão de subir pro topo da tela*/
+        #myBtn {
+            position: fixed;
+            bottom: 90px;
+            right: 30px;
+            z-index: 99;
+            border: none;
+            outline: none;
+            background-color: green;
+            color: white;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 18px;
+        }
+
+        /*Proteção para usuários que queiram roubar minha logo*/
+        #logo {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+/*Formatação para a barra de pesquisa*/
+#cacamba {
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+#pesquisa {
+padding: 10px;
+font-size: 17px;
+border: 1px solid grey;
+float: left;
+width: 60%;
+background: #f1f1f1;
+}
+
+#lista {
+margin-top: 50px;
+width: 80%;
+}
+
+#botaoPesquisa {
+padding: 10px;
+background-color: blue;
+color: red;
+border: none;
+cursor: pointer;
+text-align: center;
+display: inline-block;
+font-size: 16px;
+margin: 4px 2px;
+transition-duration: 0.4s;
+}
+
+#botaoPesquisa:hover {
+background-color: green;
+color: black;
+}
+
+/*Campo Feedback*/
+.feedback-button {
+    display: block;
+    width: 100%;
+    height: 50px;
+    margin: 20px auto;
+    color: green; 
+    text-align: center; 
+    line-height: 50px; 
+    font-size: 18px;
+    font-weight: bold; 
+    cursor: pointer;
+    border-radius: 5px;
+    text-decoration: none;
+}
+    
+        @media screen and (max-width: 600px) {
+            .feedback-button {
+                width: 100%;
+            }
+        }
+    
+/* Botão Logout */
+#botaoLogout {
+    background-color: red; 
+    color: white; 
+    padding: 10px 15px; 
+    border: none; 
+    cursor: pointer; 
+    font-size: 16px; 
+}
+
+#botaoLogout:hover {
+    background-color: blue; 
+    color: white; 
+}
+
+/* Ajuste pro Logout em celulares */
+@media screen and (max-width: 600px) {
+    #botaoLogout {
+        padding: 8px 15px; 
+        font-size: 14px; 
+    }
+}
+
+/* CSS para cada Seção */
+.bg-code {
+    background-color: lightblue; /* a light blue color fitting for programming */
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.bg-adventure {
+    background-color: #8bc34a; /* a greenish color fitting for adventure */
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.bg-romance {
+    background-color: #FF0000; /* a warm color fitting for romance */
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.bg-comedy {
+    background-color: #f2c464; /* a bright color fitting for comedy */
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.bg-fiction {
+    background-color: #2E4053; /* a deep blue color fitting for fiction */
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.bg-foreign-literature {
+    background-color: #964B00; /* a warm, earthy color fitting for foreign literature */
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.bg-poetry {    
+    background-color: #C7B8EA; /* a soft, dreamy purple color fitting for poetry */
+    padding: 10px;
+    border-radius: 10px;
+}
+
+/* CSS aos botões de redes sociais*/
+.social-icon {
+    width: 32px; 
+    height: 32px;
+    margin: 10px; 
+    border: none; 
+    border-radius: 50%; 
+    cursor: pointer; 
+}
+
+.social-icon:hover {
+    opacity: 0.8; 
+}

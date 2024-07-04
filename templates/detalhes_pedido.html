@@ -1,0 +1,6 @@
+<h1>Pedido {{ pedido.id }}</h1>
+<ul>
+    {% for itens_pedido in pedido.itens_pedidos %}
+        <li>{{ itens_pedido.livro.titulo }} ({{ itens_pedido.quantidade }})</li>
+    {% endfor %}
+</ul>

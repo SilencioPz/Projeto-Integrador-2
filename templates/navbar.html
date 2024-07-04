@@ -1,0 +1,51 @@
+<head>
+    <style>
+        /* Estilo básico para os botões */
+        nav a {
+            display: inline-block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            transition: 0.3s;
+            font-size: 17px;
+            margin: 5px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        /* Estilo específico para cada botão */
+        nav a[href="{{ url_for('login') }}"] {
+            background-color: blue;
+        }
+
+        nav a[href="{{ url_for('criar') }}"] {
+            background-color: green;
+        }
+
+        nav a[href="{{ url_for('logout') }}"] {
+            background-color: red;
+        }
+
+        /* Estilo para quando o mouse passa por cima do botão */
+        nav a:hover {
+            opacity: 0.7;
+        }
+
+        /* Estilo responsivo para telas menores (como celulares) */
+        @media screen and (max-width: 600px) {
+            nav a {
+                display: block;
+                width: 100%;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a href="{{ url_for('login') }}">Login</a>
+        <a href="{{ url_for('criar') }}">Cadastrar Usuários</a>
+    </nav>
+</body>

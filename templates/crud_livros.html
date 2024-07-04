@@ -1,0 +1,191 @@
+{% extends "template.html" %}
+{% block conteudo %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>CRUD Livros</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        form {
+            margin: 20px 0;
+            width: 100%;
+            max-width: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        input[type="submit"],
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover,
+        button:hover {
+            background-color: #45a049;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Add the button here -->
+    <a href="{{ url_for('principal') }}" class="back-button">
+        <button>Página Principal</button>
+    </a>
+
+    <!-- Inserção de Livros -->
+<hr>
+<h2>Cadastrar Livro</h2>
+<form action="{{ url_for('crud_livros') }}" method="post" enctype="multipart/form-data">
+    <!-- Adicione o token CSRF aqui -->
+    {{ form.csrf_token }}
+    {{ form.hidden_tag() }}
+    <input type="hidden" name="operation" value="create">
+    <h4>Cliente ID:</h4>
+    {{ form.cliente_id }}
+    <br>
+    <h4>ISBN:</h4>
+    {{ form.ISBN }}
+    <br>
+    <h4>Título do Livro:</h4>
+    {{ form.titulo }}
+    <br>
+    <h4>Nome do Autor:</h4>
+    {{ form.autor }}
+    <br>
+    <h4>Editora:</h4>
+    {{ form.editora }}
+    <br>
+    <h4>Ano de Publicação, Data no formato YYYY/MM/DD:</h4>
+    {{ form.ano_publicacao }}
+    <br>
+    <h4>Categoria do Livro:</h4>
+    {{ form.categoria }}
+    <br>
+    <h4>Quantidade em Estoque:</h4>
+    {{ form.quantidade }}
+    <br>
+    <h4>Preço do Livro:</h4>
+    {{ form.preco }}
+    <br>
+    <h4>Nome do Arquivo da Capa do Livro:</h4>
+    {{ form.imagem }}
+    <br>
+    <h4>Palavras-chave:</h4>
+    {{ form.palavrinha }}
+    <br>
+    <input type="submit" value="Criar">
+</form>
+    <hr>
+    <!-- Pesquisa de Livros -->
+    <h2>Pesquisar Livros</h2>
+    <form action="{{ url_for('crud_livros') }}" method="post">
+        <input type="hidden" name="operation" value="read"><br>
+        <input type="submit" value="Ver Livros">
+    </form>
+    <hr>
+    <!-- Exibição de Livros -->
+    {% for livro in livros %}
+    <div>
+        <h3>{{ livro.titulo }}</h3>
+        <p>{{ livro.autor }}</p>
+        <img src="{{ url_for('static', filename='fotografias/' ~ livro.imagem) }}" alt="{{ livro.titulo }}">
+    </div>
+    {% endfor %}
+
+    <!-- Atualização de Livros -->
+    <h2>Atualizar Livro</h2>
+    <form action="{{ url_for('crud_livros') }}" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="operation" value="update">
+        <h4>Cliente ID:</h4>
+        {{ form.cliente_id }}
+        <br>
+        <h4>ISBN:</h4>
+        {{ form.ISBN }}
+        <br>
+        <h4>Título do Livro:</h4>
+        {{ form.titulo }}
+        <br>
+        <h4>Nome do Autor:</h4>
+        {{ form.autor }}
+        <br>
+        <h4>Editora:</h4>
+        {{ form.editora }}
+        <br>
+        <h4>Ano de Publicação, Data no formato YYYY/MM/DD:</h4>
+        {{ form.ano_publicacao }}
+        <br>
+        <h4>Categoria do Livro:</h4>
+        {{ form.categoria }}
+        <br>
+        <h4>Quantidade em Estoque:</h4>
+        {{ form.quantidade }}
+        <br>
+        <h4>Preço do Livro:</h4>
+        {{ form.preco }}
+        <br>
+        <h4>Nome do Arquivo da Capa do Livro:</h4>
+        {{ form.imagem }}
+        <br>
+        <h4>Palavras-chave:</h4>
+        {{ form.palavrinha }}
+        <br>
+        <input type="submit" value="Atualizar">
+    </form>
+    <hr>
+    <!-- Deleção de Livros -->
+    <form action="{{ url_for('crud_livros') }}" method="post">
+        {{ form.csrf_token }}
+        <input type="hidden" name="operation" value="delete">
+        <h4>Informe o ID do Livro a ser deletado:</h4>
+        {{ form.id }}
+        <input type="submit" value="Deletar">
+    </form>
+    
+    <hr>
+    <h2>Redirecionamento</h2>
+    <button onclick="location.href='{{ url_for('crud_login') }}'" type="button">Ir para CRUD Login</button>
+<hr>
+<button onclick="location.href='{{ url_for('login') }}'" type="button">Ir para Login</button>
+<hr>
+<script src="{{ url_for('static', filename='js/app.js') }}" defer></script>
+<script src="{{ url_for('static', filename='js/query.js') }}" defer></script>
+</body>
+
+</html>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "template.html" %}
+{% block conteudo %}
+    {% include 'navbar.html' %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='autenticar.css') }}">
+    <h1>Faça seu login:</h1>
+
+    <!-- Flash messages -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <form method="POST" action="{{ url_for('autenticar')}}">
+        <input type="hidden" name="proxima" value="{{ proxima or url_for('principal')}}">
+        {{ form.csrf_token }}
+        <p>{{ form.email.label }} {{ form.email(size=20) }}</p>
+        <p>{{ form.senha.label }} {{ form.senha(size=20) }}</p>
+        <p>{{ form.logar() }}</p>
+    </form>
+
+    <img src="{{ url_for('static', filename='logo-quie-isso-att-3.png') }}" alt="Quie Isso Livros" style="max-width: 300px;">
+{% endblock %}

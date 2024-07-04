@@ -1,0 +1,55 @@
+{% extends "template.html" %}
+{% block conteudo %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resultados da Pesquisa</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='livros.css') }}">
+    <style>
+        .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 25%;
+            height: auto;
+        }
+        @media screen and (max-width: 600px) {
+            .center {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <img src="{{ url_for('static', filename='logo-quie-isso-att-3.png') }}" alt="Logo" class="center">
+    </div>
+
+    <h1>Resultados da Pesquisa</h1>
+
+    {% for livro in resultados %}
+    <div>
+        <p>ID: {{ livro.id }}</p>
+        <p>ISBN: {{ livro.ISBN }}</p>
+        <h2>Titulo: {{ livro.titulo }}</h2>
+        <p>Autor: {{ livro.autor }}</p>
+        <p>Editora: {{ livro.editora }}</p>
+        <p>Ano de Publicação: {{ livro.ano_publicacao }}</p>
+        <p>Categoria: {{ livro.categoria }}</p>
+        <p>Quantidade: {{ livro.quantidade }}</p>
+        <p>Preço: {{ livro.preco }}</p>
+        <p>Contato: {{ livro.cliente.nome }} ({{ livro.cliente.email }})</p>
+        <a href="{{ url_for('static', filename='fotografias/' + livro.imagem) }}" target='_blank'>Ver Imagem</a>
+        <!-- Adicione aqui outros campos do BD conforme necessário -->
+        <br>
+    </div>
+{% endfor %}
+
+    <br>
+    <!-- Add the button here -->
+    <a href="{{ url_for('principal') }}" class="back-button">
+        <button>Voltar</button>
+    </a>
+</body>
+</html>
+{% endblock %}

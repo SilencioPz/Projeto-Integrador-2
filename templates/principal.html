@@ -1,0 +1,514 @@
+{% extends "template.html" %}
+{% block conteudo %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quie Isso Livros</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='principal.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}&callback=initMap"></script>
+</head>
+
+<body class="meuBody">
+
+    <form action="{{ url_for('logout') }}" method="post" style="text-align: center;">
+        {{ form.csrf_token }}
+        <button type="submit" id="botaoLogout">Logout</button>
+    </form>    
+
+    <h5 id="dataHora"></h5>
+    <div class="text-center text-md-start text-lg-end">
+        <div class="header">
+        </div>
+
+        <header>
+
+            <button id="dark-mode-toggle">Tema Escuro</button>
+
+            <!-- Botão do Instagram -->
+            <a href="https://www.instagram.com/?url={{ 'https://www.amazon.com.br/C%C3%B3digo-limpo-Robert-C-Martin/dp/8576082675/ref=sr_1_1?crid=WVTVR1KOJI5L&dib=eyJ2IjoiMSJ9.5AFjMHmkVcZ-CKmcya9HN3bTBDAeK6NCMhly2erj6zlLMNRIFQnJSU4xuMxI_3e7hJ9WA5-wle8Rs4drwqbky5OBk_CFOjOMrkgKywSGLVrteYhg_WYjvPdW25Q3NPnsYzNkMO7k47AVw0d9ho--Ubr2AslPpRKDSZI82SYgh0I0sD0wGjfb7jpEJT890wy-df3XxU-MisD2aigXk1GP-XkQfX0n-GAnHjhaxeoxYeDpJrdeCLjaei6qCAvUW6hXkDtlm50k-ZYDMcz8Ocb5aLA_4mce7aJfOjxBIpfd23o.7UdoXnOGfgGIsna00Pno1i2MEj611buMDBKqWeWyP8I&dib_tag=se&keywords=codigo+limpo&qid=1720048068&sprefix=codigo+limpo%2Caps%2C330&sr=8-1' }}" target="_blank">
+                <img src="{{ url_for('static', filename='fotografias/instagram.svg') }}" alt="Compartilhar no Instagram" class="social-icon" />
+            </a>
+
+            <!-- Botão do WhatsApp -->
+            <a href="https://api.whatsapp.com/send?url={{ 'https://www.amazon.com.br/C%C3%B3digo-limpo-Robert-C-Martin/dp/8576082675/ref=sr_1_1?crid=WVTVR1KOJI5L&dib=eyJ2IjoiMSJ9.5AFjMHmkVcZ-CKmcya9HN3bTBDAeK6NCMhly2erj6zlLMNRIFQnJSU4xuMxI_3e7hJ9WA5-wle8Rs4drwqbky5OBk_CFOjOMrkgKywSGLVrteYhg_WYjvPdW25Q3NPnsYzNkMO7k47AVw0d9ho--Ubr2AslPpRKDSZI82SYgh0I0sD0wGjfb7jpEJT890wy-df3XxU-MisD2aigXk1GP-XkQfX0n-GAnHjhaxeoxYeDpJrdeCLjaei6qCAvUW6hXkDtlm50k-ZYDMcz8Ocb5aLA_4mce7aJfOjxBIpfd23o.7UdoXnOGfgGIsna00Pno1i2MEj611buMDBKqWeWyP8I&dib_tag=se&keywords=codigo+limpo&qid=1720048068&sprefix=codigo+limpo%2Caps%2C330&sr=8-1' }}" target="_blank">
+                <img src="{{ url_for('static', filename='fotografias/whatsapp.svg') }}" alt="Compartilhar no Whatsapp" class="social-icon" />
+            </a>
+
+            <h3>Bem-vindo, {{ usuario_nome }}!</h3>
+
+            <form action="{{ url_for('pesquisar') }}" method="get" id="cacamba" style="width: 100%; display: flex; justify-content: center; align-items: center;">
+                <input type="text" name="pesquisa" id="pesquisa" placeholder="Digite para pesquisar..." style="flex-grow: 1; margin-right: 10px;">
+                <button type="submit" id="botaoPesquisa">Pesquisar</button>
+            </form>
+            
+            <img class="logo" style="width: 50%; display: block; margin: 20px auto;" id="logo" src="{{ url_for('static', filename='logo-quie-isso-att-3.png') }}" alt="Logo do site" data-nome="logo-quie-isso"
+                data-descricao="quie isso livros logo site">
+            <hr>
+            <br>
+            <h1 style="text-align: center;">Um sebo pra lá de diferente! :D</h1>
+            <br>
+        </header>
+        
+        <hr>
+
+        <h2 style="text-align: center;">Seções</h2>
+        <nav>
+            <ul>
+                <li><a href="#aventura">Aventura</a></li>
+                <li><a href="#romance">Romance</a></li>
+                <li><a href="#comedia">Comédia</a></li>
+                <li><a href="#ficcao">Ficção</a></li>
+                <li><a href="#literatura_estrangeira">Literatura Estrangeira</a></li>
+                <li><a href="#poesia">Poesia</a></li>
+            </ul>
+        </nav>
+        
+        <hr>
+
+        <main>
+            
+            <section id="programacao" aria-label="Programação" class="bg-code">
+                <h1 class="bg-{{ carousel_name | bg_class }}">{{ carousel_name }} Livros de Programação:</h1>
+                <div class="carousel-inner" style="max-width: 300px; margin: 0 auto;">
+                    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <a href="{{ url_for('lista_livros', id=1) }}">
+                                    <img src="{{ url_for('imagem', filename='codigo-limpo.png') }}" class="d-block w-100" alt="Programação 1">
+                                </a>
+                            </div>
+                            <div class="carousel-item">
+                                <a href="{{ url_for('lista_livros', id=2) }}">
+                                    <img src="{{ url_for('imagem', filename='adol.png') }}" class="d-block w-100" alt="Programação 2">
+                                </a>
+                            </div>
+                            <div class="carousel-item">
+                                <a href="{{ url_for('lista_livros', id=3) }}">
+                                    <img src="{{ url_for('imagem', filename='aprend-php.png') }}" class="d-block w-100" alt="Programação 2">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="{{ url_for('lista_livros', id=4) }}">
+                                <img src="{{ url_for('imagem', filename='js-descomp.png') }}" class="d-block w-100" alt="Programação 2">
+                            </a>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="{{ url_for('lista_livros', id=5) }}">
+                                <img src="{{ url_for('imagem', filename='prog-web.png') }}" class="d-block w-100" alt="Programação 2">
+                            </a>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="{{ url_for('lista_livros', id=6) }}">
+                                <img src="{{ url_for('imagem', filename='python-att-1.png') }}" class="d-block w-100" alt="Programação 2">
+                            </a>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="{{ url_for('lista_livros', id=7) }}">
+                                <img src="{{ url_for('imagem', filename='prog-em-c.png') }}" class="d-block w-100" alt="Programação 2">
+                            </a>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Anterior</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Próximo</span>
+                    </button>
+                </div>
+            </div>
+            </section>
+
+            <div id="tendencias" style="background-color: #E5E5E5;">
+                <h1>Tendências:</h1>
+                <hr>
+                <h5><a href="https://www.amazon.com.br">Amazon</a></h5>
+                <h5><a href="https://www.submarino.com.br/">Submarino</a></h5>
+                <h5><a href="https://www.pontofrio.com.br/c/livros?filtro=categoria%5Ed:c484">Ponto</a></h5>
+                <h5><a href="https://www.americanas.com.br/categoria/livros">Americanas</a></h5>
+                <h5><a href="https://www.estantevirtual.com.br/">Estante Virtual</a></h5>
+                <hr>
+            </div>
+            
+            <hr>
+
+            <section id="aventura" aria-label="Aventura" class="bg-adventure">
+                <h1 class="bg-{{ carousel_name | bg_class }}">{{ carousel_name }} Livros de Aventura:</h1>
+                <div class="carousel-inner" style="max-width: 300px; margin: 0 auto;">
+                    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <a href="{{ url_for('lista_livros', id=8) }}">
+                                    <img src="{{ url_for('imagem', filename='narnia.png') }}" class="d-block w-100" alt="Aventura 1">
+                                </a>
+                            </div>
+                            <div class="carousel-item">
+                                <a href="{{ url_for('lista_livros', id=9) }}">
+                                    <img src="{{ url_for('imagem', filename='senhor-aneis.png') }}" class="d-block w-100" alt="Aventura 2">
+                                </a>
+                            </div>
+                            <div class="carousel-item">
+                                <a href="{{ url_for('lista_livros', id=10) }}">
+                                    <img src="{{ url_for('imagem', filename='pedra-filo.png') }}" class="d-block w-100" alt="Aventura 3">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="{{ url_for('lista_livros', id=11) }}">
+                                <img src="{{ url_for('imagem', filename='alice-pais.png') }}" class="d-block w-100" alt="Aventura 4">
+                            </a>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="{{ url_for('lista_livros', id=12) }}">
+                                <img src="{{ url_for('imagem', filename='conde-monte.png') }}" class="d-block w-100" alt="Aventura 5">
+                            </a>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="{{ url_for('lista_livros', id=13) }}">
+                                <img src="{{ url_for('imagem', filename='moby-dick.png') }}" class="d-block w-100" alt="Aventura 6">
+                            </a>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="{{ url_for('lista_livros', id=14) }}">
+                                <img src="{{ url_for('imagem', filename='volta-mundo.png') }}" class="d-block w-100" alt="Aventura 7">
+                            </a>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Anterior</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Próximo</span>
+                    </button>
+                </div>
+            </div>
+            </section>
+
+            <hr>
+
+            <section id="romance" aria-label="Romance" class="bg-romance">
+                <h1 class="bg-{{ carousel_name | bg_class }}">{{ carousel_name }} Livros de Romance:</h1>
+                            <div class="carousel-inner" style="max-width: 300px; margin: 0 auto;">
+                                <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active">
+                                            <a href="{{ url_for('lista_livros', id=15) }}">
+                                                <img src="{{ url_for('imagem', filename='culpa-estrelas.png') }}" class="d-block w-100" alt="Romance 1">
+                                            </a>
+                                        </div>
+                                        <div class="carousel-item">
+                                            <a href="{{ url_for('lista_livros', id=16) }}">
+                                                <img src="{{ url_for('imagem', filename='agua-elefantes.png') }}" class="d-block w-100" alt="Romance 2">
+                                            </a>
+                                        </div>
+                                        <div class="carousel-item">
+                                            <a href="{{ url_for('lista_livros', id=17) }}">
+                                                <img src="{{ url_for('imagem', filename='ps-te-amo.png') }}" class="d-block w-100" alt="Romance 3">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <a href="{{ url_for('lista_livros', id=18) }}">
+                                            <img src="{{ url_for('imagem', filename='morro-ventos.png') }}" class="d-block w-100" alt="Romance 4">
+                                        </a>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <a href="{{ url_for('lista_livros', id=19) }}">
+                                            <img src="{{ url_for('imagem', filename='orgulho-preconceito.png') }}" class="d-block w-100" alt="Romance 5">
+                                        </a>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <a href="{{ url_for('lista_livros', id=20) }}">
+                                            <img src="{{ url_for('imagem', filename='olhai-lirios.png') }}" class="d-block w-100" alt="Romance 6">
+                                        </a>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <a href="{{ url_for('lista_livros', id=21) }}">
+                                            <img src="{{ url_for('imagem', filename='anna-karenina.png') }}" class="d-block w-100" alt="Romance 7">
+                                        </a>
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Anterior</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Próximo</span>
+                                </button>
+                            </div>
+                        </div>
+                        </section>
+            
+            <hr>
+
+            <section id="comedia" aria-label="Comédia" class="bg-comedy">
+                <h1 class="bg-{{ carousel_name | bg_class }}">{{ carousel_name }} Livros de Comédia:</h1>
+                            <div class="carousel-inner" style="max-width: 300px; margin: 0 auto;">
+                                <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active">
+                                            <a href="{{ url_for('lista_livros', id=22) }}">
+                                                <img src="{{ url_for('imagem', filename='auto-compadecida.png') }}" class="d-block w-100" alt="Comédia 1">
+                                            </a>
+                                        </div>
+                                        <div class="carousel-item">
+                                            <a href="{{ url_for('lista_livros', id=23) }}">
+                                                <img src="{{ url_for('imagem', filename='cade-voce-bebe.png') }}" class="d-block w-100" alt="Comédia 2">
+                                            </a>
+                                        </div>
+                                        <div class="carousel-item">
+                                            <a href="{{ url_for('lista_livros', id=24) }}">
+                                                <img src="{{ url_for('imagem', filename='epaminondas-gato.png') }}" class="d-block w-100" alt="Comédia 3">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <a href="{{ url_for('lista_livros', id=25) }}">
+                                            <img src="{{ url_for('imagem', filename='guia-do-mochileiro.png') }}" class="d-block w-100" alt="Comédia 4">
+                                        </a>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <a href="{{ url_for('lista_livros', id=26) }}">
+                                            <img src="{{ url_for('imagem', filename='gulliver-br.png') }}" class="d-block w-100" alt="Comédia 5">
+                                        </a>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <a href="{{ url_for('lista_livros', id=27) }}">
+                                            <img src="{{ url_for('imagem', filename='sonhos-noite-br.png') }}" class="d-block w-100" alt="Comédia 6">
+                                        </a>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <a href="{{ url_for('lista_livros', id=28) }}">
+                                            <img src="{{ url_for('imagem', filename='tom-sawyer-br.png') }}" class="d-block w-100" alt="Comédia 7">
+                                        </a>
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Anterior</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Próximo</span>
+                                </button>
+                            </div>
+                        </div>
+                        </section>
+            
+            <hr>
+
+            <section id="ficcao" aria-label="Ficção" class="bg-fiction">
+                <h1 class="bg-{{ carousel_name | bg_class }}">{{ carousel_name }} Livros de Ficção:</h1>
+                            <div class="carousel-inner" style="max-width: 300px; margin: 0 auto;">
+                                <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active">
+                                            <a href="{{ url_for('lista_livros', id=29) }}">
+                                                <img src="{{ url_for('imagem', filename='admiravel-br.png') }}" class="d-block w-100" alt="Ficção 1">
+                                            </a>
+                                        </div>
+                                        <div class="carousel-item">
+                                            <a href="{{ url_for('lista_livros', id=30) }}">
+                                                <img src="{{ url_for('imagem', filename='1984-br.png') }}" class="d-block w-100" alt="Ficção 2">
+                                            </a>
+                                        </div>
+                                        <div class="carousel-item">
+                                            <a href="{{ url_for('lista_livros', id=31) }}">
+                                                <img src="{{ url_for('imagem', filename='2001-br.png') }}" class="d-block w-100" alt="Ficção 3">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <a href="{{ url_for('lista_livros', id=32) }}">
+                                            <img src="{{ url_for('imagem', filename='blade-runner-br.png') }}" class="d-block w-100" alt="Ficção 4">
+                                        </a>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <a href="{{ url_for('lista_livros', id=33) }}">
+                                            <img src="{{ url_for('imagem', filename='duna-br.png') }}" class="d-block w-100" alt="Ficção 5">
+                                        </a>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <a href="{{ url_for('lista_livros', id=34) }}">
+                                            <img src="{{ url_for('imagem', filename='frankenstein-br.png') }}" class="d-block w-100" alt="Ficção 6">
+                                        </a>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <a href="{{ url_for('lista_livros', id=35) }}">
+                                            <img src="{{ url_for('imagem', filename='guerra-mundos-br.png') }}" class="d-block w-100" alt="Ficção 7">
+                                        </a>
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Anterior</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Próximo</span>
+                                </button>
+                            </div>
+                        </div>
+                        </section>
+            
+            <hr>
+
+            <section id="literatura_estrangeira" aria-label="Estrangeira" class="bg-foreign-literature">
+                <h1 class="bg-{{ carousel_name | bg_class }}">{{ carousel_name }} Livros de Literatura Estrangeira:</h1>
+                            <div class="carousel-inner" style="max-width: 300px; margin: 0 auto;">
+                                <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active">
+                                            <a href="{{ url_for('lista_livros', id=36) }}">
+                                                <img src="{{ url_for('imagem', filename='crime-e-castigo-br.png') }}" class="d-block w-100" alt="Literatura Estrangeira 1">
+                                            </a>
+                                        </div>
+                                        <div class="carousel-item">
+                                            <a href="{{ url_for('lista_livros', id=37) }}">
+                                                <img src="{{ url_for('imagem', filename='o-processo-br.png') }}" class="d-block w-100" alt="Literatura Estrangeira 2">
+                                            </a>
+                                        </div>
+                                        <div class="carousel-item">
+                                            <a href="{{ url_for('lista_livros', id=38) }}">
+                                                <img src="{{ url_for('imagem', filename='dom-quixote-br.png') }}" class="d-block w-100" alt="Literatura Estrangeira 3">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <a href="{{ url_for('lista_livros', id=39) }}">
+                                            <img src="{{ url_for('imagem', filename='iliada-1-br.png') }}" class="d-block w-100" alt="Literatura Estrangeira 4">
+                                        </a>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <a href="{{ url_for('lista_livros', id=40) }}">
+                                            <img src="{{ url_for('imagem', filename='madame-bovary-br.png') }}" class="d-block w-100" alt="Literatura Estrangeira 5">
+                                        </a>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <a href="{{ url_for('lista_livros', id=41) }}">
+                                            <img src="{{ url_for('imagem', filename='nome-rosa-br.png') }}" class="d-block w-100" alt="Literatura Estrangeira 6">
+                                        </a>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <a href="{{ url_for('lista_livros', id=42) }}">
+                                            <img src="{{ url_for('imagem', filename='pequeno-principe-br.png') }}" class="d-block w-100" alt="Literatura Estrangeira 7">
+                                        </a>
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Anterior</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Próximo</span>
+                                </button>
+                            </div>
+                        </div>
+                        </section>
+            
+            <hr>
+
+            <section id="poesia" aria-label="Poesia" class="bg-poetry">
+                <h1 class="bg-{{ carousel_name | bg_class }}">{{ carousel_name }} Livros de Poesia:</h1>
+                            <div class="carousel-inner" style="max-width: 300px; margin: 0 auto;">
+                                <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active">
+                                            <a href="{{ url_for('lista_livros', id=43) }}">
+                                                <img src="{{ url_for('imagem', filename='amar-se-aprende-br.png') }}" class="d-block w-100" alt="Poesia 1">
+                                            </a>
+                                        </div>
+                                        <div class="carousel-item">
+                                            <a href="{{ url_for('lista_livros', id=44) }}">
+                                                <img src="{{ url_for('imagem', filename='antologia-poetica-br.png') }}" class="d-block w-100" alt="Poesia 2">
+                                            </a>
+                                        </div>
+                                        <div class="carousel-item">
+                                            <a href="{{ url_for('lista_livros', id=45) }}">
+                                                <img src="{{ url_for('imagem', filename='flores-mal-br.png') }}" class="d-block w-100" alt="Poesia 3">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <a href="{{ url_for('lista_livros', id=46) }}">
+                                            <img src="{{ url_for('imagem', filename='libertinagem-e-estrela-br.png') }}" class="d-block w-100" alt="Poesia 4">
+                                        </a>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <a href="{{ url_for('lista_livros', id=47) }}">
+                                            <img src="{{ url_for('imagem', filename='para-viver-poesia-br.png') }}" class="d-block w-100" alt="Poesia 5">
+                                        </a>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <a href="{{ url_for('lista_livros', id=48) }}">
+                                            <img src="{{ url_for('imagem', filename='toda-poesia-br.png') }}" class="d-block w-100" alt="Poesia 6">
+                                        </a>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <a href="{{ url_for('lista_livros', id=49) }}">
+                                            <img src="{{ url_for('imagem', filename='vinte-poemas-br.png') }}" class="d-block w-100" alt="Poesia 7">
+                                        </a>
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Anterior</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Próximo</span>
+                                </button>
+                            </div>
+                        </div>
+                        </section>
+
+            <hr>
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfoTTF0Q2kYnIsFttSep0n_0tB76vjggA8fONadYWAO_3FzyA/viewform?embedded=true" width="640" height="1333" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+            <hr>
+            <div id="map"></div>
+            <hr>
+            <center>
+                <a href="{{ url_for('relatorio') }}">
+                    <button style="background-color: blue; color: white;">Gerar Relatório de todos os livros</button>
+                </a>
+            </center>
+            <hr>
+            <a href="/feedback" class="feedback-button">
+                Deixe seu feedback
+            
+            <hr>
+
+        </main>
+
+        <footer style="text-align: center;">
+            <h3>Sobre o autor deste site:
+                <a href="https://github.com/silenciopz">silenciopz</a>
+            </h3>
+            <br>
+            <br>
+            <h3>Copyright © 2024 silenciopz, todos os direitos reservados. Site hosteado por: <a
+                    href="https://www.netlify.com/">Netlify</a></h3>
+            <br>
+        </footer>
+        <button onclick="topFunction()" id="myBtn" title="Go to top">Topo</button>
+
+        <script src="{{ url_for('static', filename='js/principal.js') }}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="{{ url_for('static', filename='js/app.js') }}" defer></script>
+        <script src="{{ url_for('static', filename='js/query.js') }}" defer></script>
+    </div>
+</body>
+
+</html>
+{% endblock %}

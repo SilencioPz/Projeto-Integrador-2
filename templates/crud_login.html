@@ -1,0 +1,131 @@
+{% extends "template.html" %}
+{% block conteudo %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>CRUD</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+        form {
+            margin: 20px 0;
+            width: 100%;
+            max-width: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"], input[type="email"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        input[type="submit"], button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover, button:hover {
+            background-color: #45a049;
+        }
+        @media (max-width: 600px) {
+            body {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Add the button here -->
+    <a href="{{ url_for('principal') }}" class="back-button">
+        <button>Página Principal</button>
+    </a>
+
+        <!-- Inserção de dados no Banco de Dados -->
+    <hr>
+    <h2>Criar Usuário</h2>
+    <form action="{{ url_for('crud_login') }}" method="post">
+        <!-- Adicione o token CSRF aqui -->
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <input type="hidden" name="operation" value="create">
+        <label for="createNome">Nome:</label><br>
+        <input type="text" id="createNome" name="nome"><br>
+        <label for="createEmail">Email:</label><br>
+        <input type="email" id="createEmail" name="email"><br>
+        <label for="createSenha">Senha:</label><br>
+        <input type="password" id="createSenha" name="senha"><br>
+        <input type="submit" value="Criar">
+    </form>
+    <hr>
+    <!-- Leitura de dados -->
+<h2>Ver Usuários</h2>
+<form action="{{ url_for('crud_login') }}" method="post">
+    <!-- Adicione o token CSRF aqui -->
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <input type="hidden" name="operation" value="read">
+    <input type="submit" value="Ver">
+</form>
+<!-- Display the list of users -->
+<ul>
+    {% for usuario in usuarios %}
+        <li>{{ usuario.nome }} ({{ usuario.email }}) - Senha: {{ usuario.senha }}</li>
+    {% endfor %}
+</ul>
+    <!-- Atualização dos dados de um usuário -->
+    <h2>Atualizar Usuário</h2>
+    <form action="{{ url_for('crud_login') }}" method="post">
+        <!-- Adicione o token CSRF aqui -->
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <input type="hidden" name="operation" value="update">
+        <label for="updateId">ID do Usuário:</label><br>
+        <input type="text" id="updateId" name="id"><br>
+        <label for="updateNome">Novo Nome:</label><br>
+        <input type="text" id="updateNome" name="nome"><br>
+        <label for="updateEmail">Novo Email:</label><br>
+        <input type="email" id="updateEmail" name="email"><br>
+        <label for="updateSenha">Nova Senha:</label><br>
+        <input type="password" id="updateSenha" name="senha"><br>
+        <input type="submit" value="Atualizar">
+    </form>    
+    <hr>
+    <!-- Deleção de dados -->
+    <h2>Deletar Usuário</h2>
+    <form action="{{ url_for('crud_login') }}" method="post">
+        <!-- Adicione o token CSRF aqui -->
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <input type="hidden" name="operation" value="delete">
+        <label for="deleteId">ID do Usuário:</label><br>
+        <input type="text" id="deleteId" name="id"><br>
+        <input type="submit" value="Deletar">
+    </form>
+    <hr>
+
+    <!-- Link CRUD de Livros -->
+    <h2>Gerenciar Livros</h2>
+    <h2>Redirecionamento</h2>
+    <button onclick="location.href='{{ url_for('crud_livros') }}'" type="button">Ir para CRUD Livros</button>
+    <hr>
+    <h2>Início do Website</h2>
+    <button onclick="location.href='{{ url_for('login') }}'" type="button">Ir para Login</button></button>
+    <hr>
+</body>
+
+</html>
+{% endblock %}

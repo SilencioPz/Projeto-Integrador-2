@@ -1,0 +1,9 @@
+<h1>Delete Book</h1>
+
+<p>Tem certeza de que quer deletar este livro? "{{ form.titulo.data }}"?</p>
+
+<form action="" method="post">
+    {{ form.hidden_tag() }}
+    {{ form.delete_id }}
+    <input type="submit" value="Delete Book">
+</form>

@@ -1,0 +1,30 @@
+{% extends "template.html" %}
+{% block conteudo %}
+{% include 'navbar.html' %}
+<style>
+    .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 25%;
+        height: auto;
+    }
+    @media screen and (max-width: 600px) {
+        .center {
+            max-width: 100%;
+        }
+    }
+</style>
+<link rel="stylesheet" href="{{ url_for('static', filename='autenticar.css') }}">
+
+<form method="POST" action="{{ url_for('autenticar')}}">
+    {{ form.csrf_token }}
+    <input type="hidden" name="proxima" value="{{ url_for('login') }}">
+</form>
+
+
+<h1>Você saiu com sucesso!</h1>
+<p>Obrigado por visitar Quié Isso Livros. Espero revê-los em breve!</p>
+<a href="{{ url_for('login') }}">Clique aqui para fazer login novamente</a>
+<img class="center" src="{{ url_for('static', filename='logo-quie-isso-att-3.png') }}" alt="Quie Isso Livros">
+{% endblock %}

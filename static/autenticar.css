@@ -1,0 +1,55 @@
+/* autenticar.css */
+
+/* Formulário centralizado */
+form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* Campos de texto */
+.form-control {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Botão */
+.btn-primary {
+    background-color: green;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Imagem */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Responsividade */
+@media screen and (max-width: 600px) {
+    form {
+        max-width: 100%;
+    }
+}
+
+/* Título Estilizado padrão RGB */
+h1 {
+    text-align: center;
+    color: black;
+}
+
+/* Nome dos campos */
+label {
+    color: red;
+}
+
+body {
+    background-color: #E5E5E5;
+}
