@@ -1,17 +1,17 @@
 # Projeto-Integrador-2
 #### Por: Bruno Coelho Perez
-Este repositório conterá meu Projeto Integrador do Módulo Web do curso Técnico em Desenvolvimento de Sistemas do Secitec-Rondonópolis.
+Este repositório conterá meu Projeto Integrador do Módulo Web do curso Técnico em Desenvolvimento de Sistemas do Secitec-Rondonópolis.<br>
 ___
-
+<hr>
 **1. Nome da solução**<br>
-Quié Isso Livros
-
+Quié Isso Livros<br>
+<hr>
 **2. Logotipo da solução**<br>
-<img src="logo-quie-isso-att-3.png" style="width: 50%; height: 50%;">
-
+<img src="logo-quie-isso-att-3.png" style="width: 50%; height: 50%;"><br>
+<hr>
 **3. Cenário**<br>
-Pensando em uma solução para a cidade de Rondonópolis, carente de um público leitor por motivos culturais, pensei em um sebo virtual para angariar novos leitores. Utilizando ferramentas como o Google Maps, loja virtual e bom humor, é possível informar aos usuários onde procurar por livros na cidade, pelo endereço do sebo virtual e até mesmo na internet por indicações informadas no site.
-
+Pensando em uma solução para a cidade de Rondonópolis, carente de um público leitor por motivos culturais, pensei em um sebo virtual para angariar novos leitores. Utilizando ferramentas como o Google Maps, loja virtual e bom humor, é possível informar aos usuários onde procurar por livros na cidade, pelo endereço do sebo virtual e até mesmo na internet por indicações informadas no site.<br>
+<hr>
 **4. Requisitos a serem atendidos:**<br>
 * Requisitos funcionais:
 * •	O site terá tags para facilitar sua busca sobre livros, dos mais variados tipos;
@@ -21,27 +21,27 @@ Pensando em uma solução para a cidade de Rondonópolis, carente de um público
 •	O site terá um campo Fale Comigo, enviando dicas, sugestões ou relatando bugs e falhas ao dev;
 •	O site pode gerar um PDF informando todos os livros informados por seções;
 •	O site terá integração com redes sociais, como Instagram e WhatsApp, para divulgação;
-•	O site terá facilitadores ao usuário, como uma barra de pesquisa ou cliques para mais informações sobre os livros.
-
+•	O site terá facilitadores ao usuário, como uma barra de pesquisa ou cliques para mais informações sobre os livros.<br>
+<hr>
 * Requisitos não funcionais:
 •	O site não será atualizado constantemente;
 •	O site será responsivo;
-•	O site terá componentes de acessibilidade.
-
-  
+•	O site terá componentes de acessibilidade.<br>
+<hr>  
 **5. Tecnologias utilizadas**<br>
-HTML 5, CSS, Bootstrap, Javascript (front-end), MySQL (Banco de Dados) e Python (back-end, utilizei Flask).
-
+HTML 5, CSS, Bootstrap, Javascript (front-end), MySQL (Banco de Dados) e Python (back-end, utilizei Flask).<br>
+<hr>
 **6. Cronograma para desenvolvimento**<br>
 Início do Projeto: Março/2024;
 Intermediação: Julho/2024
 Testes: Julho/2024
-Fim do Projeto: 03/julho/2024
-
+Fim do Projeto: 03/julho/2024<br>
+<hr>
 ## Sobre a solução ##<br>
-Quie Isso Livro partiu da ideia de ter um novo local, no caso virtual, para escolha de livros e uma maior divulgação destes instrumentos culturais para a população de Rondonópolis. Tentei moldar como um sebo, já que uma loja virtual demandaria trabalho e recursos que não possuo.
+Quie Isso Livro partiu da ideia de ter um novo local, no caso virtual, para escolha de livros e uma maior divulgação destes instrumentos culturais para a população de Rondonópolis. Tentei moldar como um sebo, já que uma loja virtual demandaria trabalho e recursos que não possuo.<br>
+<hr>
 **1. Pré-requisitos para instalação da solução**<br>
-Python instalado. Utilizar VS Code ajuda e muito. Requirements: 
+Python instalado. Utilizar VS Code ajuda e muito. Requirements: <br>
 alembic==1.13.1
 aniso8601==9.0.1
 bcrypt==4.1.3
@@ -99,12 +99,17 @@ typing_extensions==4.11.0
 urllib3==2.2.1
 Werkzeug==3.0.3
 WTForms==3.1.2
+<br>
+<hr>
 **2. Instalação do projeto**<br>
-Crie um ambiente virtual, faça os pips para cada importação funcionar. Recomendável Windows 11 com Python instalado. VS Code para ver os códigos.
+Crie um ambiente virtual, faça os pips para cada importação funcionar. Recomendável Windows 11 com Python instalado. VS Code para ver os códigos.<br>
+<hr>
 **3. Credenciais para teste**<br>
 
+<hr>
 **4. Informações sobre o colaborador**<br>
 Bruno Coelho Perez, brasileiro, solteiro e dev junior. 
 GitHub: https://github.com/SilencioPz
 Linkedin: https://www.linkedin.com/in/bruno-c-perez-a712b0276/
 e-mail: silencioso_br@outlook.com
+<hr>
