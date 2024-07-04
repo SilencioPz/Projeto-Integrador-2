@@ -34,16 +34,73 @@ HTML 5, CSS, Bootstrap, Javascript (front-end), MySQL (Banco de Dados) e Python 
 
 **6. Cronograma para desenvolvimento**<br>
 Início do Projeto: Março/2024;
-Intermediação:
-Testes:
-Fim do Projeto:
+Intermediação: Julho/2024
+Testes: Julho/2024
+Fim do Projeto: 03/julho/2024
 
 ## Sobre a solução ##<br>
-
+Quie Isso Livro partiu da ideia de ter um novo local, no caso virtual, para escolha de livros e uma maior divulgação destes instrumentos culturais para a população de Rondonópolis. Tentei moldar como um sebo, já que uma loja virtual demandaria trabalho e recursos que não possuo.
 **1. Pré-requisitos para instalação da solução**<br>
-
+Python instalado. Utilizar VS Code ajuda e muito. Requirements: 
+alembic==1.13.1
+aniso8601==9.0.1
+bcrypt==4.1.3
+blinker==1.8.2
+cachelib==0.13.0
+certifi==2024.2.2
+chardet==5.2.0
+charset-normalizer==3.3.2
+click==8.1.7
+colorama==0.4.6
+dnspython==2.6.1
+email_validator==2.2.0
+Faker==25.2.0
+Flask==3.0.3
+Flask-Bcrypt==1.0.1
+Flask-Caching==1.11.1
+Flask-Flash==2.0.0
+flask-form==1.0.0
+Flask-HTTPAuth==4.8.0
+Flask-Login==0.6.3
+flask-marshmallow==0.10.0
+Flask-Migrate==2.7.0
+Flask-RESTful==0.3.10
+Flask-Script==2.0.6
+Flask-Session==0.8.0
+Flask-SQLAlchemy==3.1.1
+Flask-SSLify==0.1.5
+Flask-WTF==1.2.1
+greenlet==3.0.3
+idna==3.7
+inflect==7.2.1
+itsdangerous==2.2.0
+Jinja2==3.1.4
+Mako==1.3.5
+MarkupSafe==2.1.5
+marshmallow==2.15.0
+marshmallow-sqlalchemy==0.13.2
+more-itertools==10.2.0
+msgspec==0.18.6
+mysql-connector-python==8.4.0
+mysqlclient==2.2.4
+numpy==1.26.4
+pillow==10.3.0
+protobuf==5.26.1
+PyMySQL==1.1.1
+python-dateutil==2.9.0.post0
+pytz==2024.1
+PyYAML==6.0.1
+reportlab==4.2.2
+requests==2.31.0
+six==1.16.0
+SQLAlchemy==2.0.30
+typeguard==4.2.1
+typing_extensions==4.11.0
+urllib3==2.2.1
+Werkzeug==3.0.3
+WTForms==3.1.2
 **2. Instalação do projeto**<br>
-
+Crie um ambiente virtual, faça os pips para cada importação funcionar. Recomendável Windows 11 com Python instalado. VS Code para ver os códigos.
 **3. Credenciais para teste**<br>
 
 **4. Informações sobre o colaborador**<br>
